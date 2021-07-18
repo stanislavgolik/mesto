@@ -6,6 +6,13 @@
   margin-bottom: 50px;
 }
 
+@media screen and (max-width: 920px){
+  .profile {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+}
+
 @media screen and (max-width: 690px){
   .profile {
     flex-direction: column;

@@ -7,7 +7,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
-	display: none;
+  display: none; /*у меня в коде в VS нет никаких лишних пробелов, все отступы одинаковые*/
   justify-content: center;
   align-items: center;
 }

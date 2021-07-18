@@ -15,7 +15,7 @@
 
 .popup__button-save:hover{
   cursor: pointer;
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity .1s linear;
 }
 
@@ -24,6 +24,8 @@
     width: 238px;
     margin-top: 15px;
     margin-bottom: 0;
+    font-size: 14px;
+    line-height: 17px;
   }
 
   }

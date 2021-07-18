@@ -5,6 +5,7 @@
   background-position: center;
   border: 2px solid #FFFFFF;
   padding: 0;
+  border-radius: 2px;
 }
 
 .profile__button-add:hover{
@@ -18,5 +19,6 @@
     align-self: center;
     margin-top: 36px;
     width: 282px;
+    background-size: 16px;
   }
 }
