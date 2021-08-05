@@ -19,12 +19,12 @@
         <div class="profile__info">
           <div class="profile__edit">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit" type="button" aria-label="Edit"></button>
+            <button class="profile__button-edit" type="button" aria-label="Редактировать"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
       </div>
-      <button class="profile__button-add" type="button" aria-label="Add"></button>
+      <button class="profile__button-add" type="button" aria-label="Добавить"></button>
     </section>
 
     <section>
@@ -40,42 +40,42 @@
 
   <template id="elementTemplate">
     <li class="element">
-      <button type="button" class="element__button-delete" aria-label="Delete"></button>
+      <button type="button" class="element__button-delete" aria-label="Удалить"></button>
       <img src="#" alt="#" class="element__image">
       <div class="element__description">
         <h2 class="element__caption"></h2>
-        <button class="element__button-like" type="button" aria-label="Like"></button>
+        <button class="element__button-like" type="button" aria-label="Лайк"></button>
       </div>
     </li>
   </template>
 
   <div class="popup" id="popup_editprofile">
     <div class="popup__container">
-      <button class="popup__button-close" type="button" aria-label="Close"></button>
+      <button class="popup__button-close popup__button-close_edit" type="button" aria-label="Закрыть"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form" name="user-info">
-        <input type="text"  class="popup__input" name="name" placeholder="Имя" id="name-input">
-        <input type="text" class="popup__input" name="job" placeholder="Чем занимаюсь" id="job-input">
-        <button type="submit" class="popup__button-save" aria-label="Save">Сохранить</button>
+      <form class="popup__form popup__form_profileEdit" name="user-info" id="popupFormEdit">
+        <input type="text"  class="popup__input" name="name" placeholder="Имя" id="name-input" required>
+        <input type="text" class="popup__input" name="job" placeholder="Чем занимаюсь" id="job-input" required>
+        <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
 
   <div class="popup" id="popup_addcard">
     <div class="popup__container">
-      <button class="popup__button-close" type="button" aria-label="Close" id="closeButtonAdd"></button>
+      <button class="popup__button-close popup__button-close_add" type="button" aria-label="Закрыть" id="closeButtonAdd"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="user-info" id="popupFormAdd">
-        <input type="text"  class="popup__input" name="place" placeholder="Название места" id="place-name">
-        <input type="text" class="popup__input" name="url" placeholder="Ссылка на картинку" id="place-image">
-        <button type="submit" class="popup__button-save" aria-label="Save">Создать</button>
+      <form class="popup__form" name="add_card" id="popupFormAdd">
+        <input type="text"  class="popup__input" name="place" placeholder="Название места" id="place-name" required>
+        <input type="url" class="popup__input" name="url" placeholder="Ссылка на картинку" id="place-image" required>
+        <button type="submit" class="popup__button-save" aria-label="Сохранить">Создать</button>
       </form>
     </div>
   </div>
 
   <div class="popup" id="popup_opengalery">
     <div class="popup__gallery">
-      <button type="button" class="popup__button-close popup__button-close_image" aria-label="Close" id="closeButtonGallery"></button>
+      <button type="button" class="popup__button-close popup__button-close_image" aria-label="Закрыть" id="closeButtonGallery"></button>
       <figure class="popup__figure">
         <img class="popup__image" src="#" alt="">
         <figcaption class="popup__subtitle"></figcaption>
