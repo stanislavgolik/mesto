@@ -53,9 +53,11 @@
     <div class="popup__container">
       <button class="popup__button-close popup__button-close_edit" type="button" aria-label="Закрыть"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form popup__form_profileEdit" name="user-info" id="popupFormEdit">
-        <input type="text"  class="popup__input" name="name" placeholder="Имя" id="name-input" required>
-        <input type="text" class="popup__input" name="job" placeholder="Чем занимаюсь" id="job-input" required>
+      <form class="popup__form popup__form_profileEdit" name="user-info" id="popupFormEdit" novalidate>
+        <input type="text"  class="popup__input" name="name" placeholder="Имя" id="name-input" required minlength="2" maxlength="40">
+        <span class="popup__message-error name-input-error" id="name-error"></span>
+        <input type="text" class="popup__input" name="job" placeholder="Чем занимаюсь" id="job-input" required  minlength="2" maxlength="200">
+        <span class="popup__message-error job-input-error" id="job-error"></span>
         <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
@@ -65,9 +67,11 @@
     <div class="popup__container">
       <button class="popup__button-close popup__button-close_add" type="button" aria-label="Закрыть" id="closeButtonAdd"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form" name="add_card" id="popupFormAdd">
-        <input type="text"  class="popup__input" name="place" placeholder="Название места" id="place-name" required>
+      <form class="popup__form" name="add_card" id="popupFormAdd" novalidate>
+        <input type="text"  class="popup__input" name="place" placeholder="Название места" id="place-name" required minlength="2" maxlength="30">
+        <span class="popup__message-error place-name-error" id="title-error"></span>
         <input type="url" class="popup__input" name="url" placeholder="Ссылка на картинку" id="place-image" required>
+        <span class="popup__message-error place-image-error" id="link-error"></span>
         <button type="submit" class="popup__button-save" aria-label="Сохранить">Создать</button>
       </form>
     </div>
@@ -84,6 +88,6 @@
   </div>
 
   <script src="./scripts/script.js"> </script>
-
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

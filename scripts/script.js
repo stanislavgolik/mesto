@@ -11,11 +11,15 @@ const closeButtonFromProfilePopup = document.querySelector(".popup__button-close
 /*Функция открытия попапа*/
 function showPopup(popup){
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', handleEscPopup);
+  popup.addEventListener("mousedown", handleClickOverlay);
 }
 
 /*Функция закрытия попапа*/
 function closePopup(popup){
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', handleEscPopup);
+  popup.removeEventListener("mousedown", handleClickOverlay);
 }
 
 /*Сохранение данных из попапа в профиль*/
@@ -154,3 +158,19 @@ function openGallery(evt) {
 }
 
 closeButtonGallery.addEventListener('click', function() { closePopup(galleryPopup)});
+
+/*Функция закрытия попапа по кнопке Esc*/
+function handleEscPopup(event) {
+  if (event.key === 'Escape') {
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
+  }
+};
+
+/*Функция закрытия попапа по клику на оверлей*/
+function handleClickOverlay(evt) {
+  const popup = document.querySelector(".popup_opened");
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popup);
+  }
+};
