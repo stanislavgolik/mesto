@@ -10,6 +10,7 @@ const closeButtonFromProfilePopup = document.querySelector(".popup__button-close
 
 /*Функция открытия попапа*/
 function showPopup(popup){
+  formElementAdd.reset();
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', handleEscPopup);
   popup.addEventListener("mousedown", handleClickOverlay);
@@ -169,8 +170,7 @@ function handleEscPopup(event) {
 
 /*Функция закрытия попапа по клику на оверлей*/
 function handleClickOverlay(evt) {
-  const popup = document.querySelector(".popup_opened");
   if (evt.target.classList.contains('popup')) {
-    closePopup(popup);
+    closePopup(evt.target);
   }
 };
