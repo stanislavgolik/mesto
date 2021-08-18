@@ -10,7 +10,7 @@ const closeButtonFromProfilePopup = document.querySelector(".popup__button-close
 
 /*Функция открытия попапа*/
 function showPopup(popup){
-  formElementAdd.reset();
+  //formElementAdd.reset(); сброс сабмита перенес в функцию создания нового элемента строка 126
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', handleEscPopup);
   popup.addEventListener("mousedown", handleClickOverlay);
@@ -28,8 +28,8 @@ function handleProfileFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   job.textContent = inputJob.value;
-  inputName.value = profileName.textContent;
-  inputJob.value = job.textContent;
+  //inputName.value = profileName.textContent; убираю дублирующие строки, они есть в функции открытия попапа
+  //inputJob.value = job.textContent;
   closePopup(editPopup);
 }
 
@@ -117,13 +117,13 @@ const placeImg = document.querySelector('#place-image');
 
 formElementAdd.addEventListener('submit', (event) => {
   event.preventDefault();
-  const newElement = [];
+  const newElement = {};
   newElement.name=placeName.value;
   newElement.link=placeImg.value;
   addCard(newElement);
   placeName.value = '';
   placeImg.value = '';
-
+  formElementAdd.reset(); //деактивирую кнопку сабмита
   closePopup(popupAdd);
 });
 
