@@ -1,3 +1,6 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+
 const editButton = document.querySelector(".profile__button-edit");
 const editPopup = document.getElementById("popup_editprofile");
 const profileName = document.querySelector(".profile__title");
@@ -9,7 +12,7 @@ const closeButtonFromProfilePopup = document.querySelector(".popup__button-close
 
 
 /*Функция открытия попапа*/
-function showPopup(popup){
+export function showPopup(popup){
   //formElementAdd.reset(); сброс сабмита перенес в функцию создания нового элемента строка 126
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', handleEscPopup);
@@ -28,8 +31,6 @@ function handleProfileFormSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   job.textContent = inputJob.value;
-  //inputName.value = profileName.textContent; убираю дублирующие строки, они есть в функции открытия попапа
-  //inputJob.value = job.textContent;
   closePopup(editPopup);
 }
 
@@ -38,6 +39,8 @@ function showEditPopup() {
   showPopup(editPopup);
   inputName.value = profileName.textContent;
   inputJob.value = job.textContent;
+  formValidatorEdit.toggleButtonState();
+  formValidatorEdit.hideInputSelectorError();
 }
 
 editButton.addEventListener('click', showEditPopup);
@@ -73,28 +76,22 @@ const initialElements = [
   }
 ];
 
+
 //функция инициализации элементов
 const elements = document.querySelector('.elements');
-const templateElement = document.getElementById('elementTemplate');
 
 //функция создания карточки
-function createCard(elm) {
-  const newElement = templateElement.content.firstElementChild.cloneNode(true);
-  newElement.querySelector('.element__caption').innerText = elm.name;
-  newElement.querySelector('.element__image').alt = elm.name;
-  newElement.querySelector('.element__image').src = elm.link;
-  newElement.querySelector('.element__button-like').addEventListener('click', toggleLike);
-  newElement.querySelector('.element__button-delete').addEventListener('click', removeElem);
-  newElement.querySelector('.element__image').addEventListener("click", openGallery);
-  return newElement;
-}
+function createCard(element) {
+  return (new Card(element.name, element.link)).generateCard();
+  }
+
 //функция добавления карточки
 function addCard(elm) {
   const newElement = createCard(elm);
   elements.prepend(newElement);
 }
 
-//вызов первичной инцииализации карточек
+//вызов первичной инцииализации карточ
 
 initialElements.forEach(addCard);
 
@@ -123,41 +120,13 @@ formElementAdd.addEventListener('submit', (event) => {
   addCard(newElement);
   placeName.value = '';
   placeImg.value = '';
+  formValidatorCard.toggleButtonState();
+  formValidatorCard.hideInputSelectorError();
   formElementAdd.reset(); //деактивирую кнопку сабмита
   closePopup(popupAdd);
 });
 
-/*функция лайка*/
-
-function toggleLike(event) {
-  event.preventDefault();
-  const likeBtn = event.target.closest('.element__button-like');
-  likeBtn.classList.toggle('element__button-like_active');
-};
-
-/*удаление элемента*/
-
-function removeElem(event) {
-  event.target.closest('.element').remove();
-}
-
-/*Функция открытия и закрытия картинки*/
-
-
 const galleryPopup = document.getElementById("popup_opengalery");
-const galleryImg = document.querySelector(".popup__image");
-const galleryCapture = document.querySelector(".popup__subtitle");
-const closeButtonGallery = document.querySelector("#closeButtonGallery");
-
-function openGallery(evt) {
-  const newSrc = evt.target.getAttribute("src");
-  const newAlt = evt.target.getAttribute("alt");
-  galleryImg.setAttribute("src", newSrc);
-  galleryImg.setAttribute("alt", newAlt);
-  galleryCapture.textContent = newAlt;
-  showPopup(galleryPopup);
-}
-
 closeButtonGallery.addEventListener('click', function() { closePopup(galleryPopup)});
 
 /*Функция закрытия попапа по кнопке Esc*/
@@ -174,3 +143,18 @@ function handleClickOverlay(evt) {
     closePopup(evt.target);
   }
 };
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_deactivated',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__message-error_activated'
+ };
+
+const formValidatorCard = new FormValidator(config, popupFormProfileEdit);
+const formValidatorEdit = new FormValidator(config, formElementAdd);
+
+formValidatorCard.enableValidation();
+formValidatorEdit.enableValidation();
