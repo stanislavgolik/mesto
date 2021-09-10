@@ -82,7 +82,7 @@ const elements = document.querySelector('.elements');
 
 //функция создания карточки
 function createCard(element) {
-  return (new Card(element.name, element.link)).generateCard();
+  return (new Card(element, '.elementTemplate').generateCard());
   }
 
 //функция добавления карточки
@@ -100,15 +100,15 @@ initialElements.forEach(addCard);
 const addButton = document.querySelector(".profile__button-add");
 const popupAdd = document.querySelector("#popup_addcard");
 const closeButtonAdd = document.querySelector("#closeButtonAdd");
+const formElementAdd = document.getElementById('popupFormAdd');
 
-
-addButton.addEventListener('click', function() { showPopup(popupAdd)});
+addButton.addEventListener('click', function() { showPopup(popupAdd);formValidatorCard.toggleButtonState();});
 closeButtonAdd.addEventListener('click', function() { closePopup(popupAdd)});
 
 
 /*функция создания нового элемента*/
 
-const formElementAdd = document.getElementById('popupFormAdd');
+//const formElementAdd = document.getElementById('popupFormAdd');
 const placeName = document.querySelector('#place-name');
 const placeImg = document.querySelector('#place-image');
 
@@ -118,9 +118,6 @@ formElementAdd.addEventListener('submit', (event) => {
   newElement.name=placeName.value;
   newElement.link=placeImg.value;
   addCard(newElement);
-  placeName.value = '';
-  placeImg.value = '';
-  formValidatorCard.toggleButtonState();
   formValidatorCard.hideInputSelectorError();
   formElementAdd.reset(); //деактивирую кнопку сабмита
   closePopup(popupAdd);
@@ -153,8 +150,8 @@ const config = {
   errorClass: 'popup__message-error_activated'
  };
 
-const formValidatorCard = new FormValidator(config, popupFormProfileEdit);
-const formValidatorEdit = new FormValidator(config, formElementAdd);
+const formValidatorCard = new FormValidator(config, formElementAdd);
+const formValidatorEdit = new FormValidator(config, popupFormProfileEdit);
 
 formValidatorCard.enableValidation();
 formValidatorEdit.enableValidation();

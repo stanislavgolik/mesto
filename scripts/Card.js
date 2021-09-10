@@ -1,13 +1,14 @@
 import {showPopup} from './index.js';
 export class Card {
-  constructor(name, link) {
-    this._name = name;
-    this._link = link;
+  constructor(elements, cardSelector) {
+    this._name = elements.name;
+    this._link = elements.link;
+    this._cardSelector = cardSelector;
   }
 
   _getTemplate() {
     const cardElem = document
-        .getElementById('elementTemplate')
+        .querySelector(this._cardSelector)
         .content
         .querySelector('.element')
         .cloneNode(true);
