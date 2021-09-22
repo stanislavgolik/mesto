@@ -8,7 +8,7 @@ export class FormValidator {
     this._formElement = formElement;
   };
 
-   /*Функция, которая добавляет класс с ошибкой*/
+   //Функция, которая добавляет класс с ошибкой
   _showInputError (inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
@@ -16,7 +16,7 @@ export class FormValidator {
     errorElement.textContent = errorMessage;
   };
 
-  /*Функция, которая удаляет класс с ошибкой*/
+  //Функция, которая удаляет класс с ошибкой
   _hideInputError (inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
@@ -24,7 +24,7 @@ export class FormValidator {
     errorElement.textContent = '';
   };
 
-  /*Функция, которая проверяет валидность поля*/
+  //Функция, которая проверяет валидность поля
   _checkInputValidity (inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
@@ -33,7 +33,7 @@ export class FormValidator {
     }
   };
 
-  /*Убираем ошибки при открытии попапа*/
+  //Убираем ошибки при открытии попапа
   hideInputSelectorError() {
     const inputList = this._formElement.querySelectorAll(this._inputSelector);
     inputList.forEach((inputElement) => {
@@ -41,7 +41,7 @@ export class FormValidator {
     });
   };
 
-  /*Функция которая изменяет состояние кнопки(активна или не активна)*/
+  //Функция которая изменяет состояние кнопки(активна или не активна)
   toggleButtonState() {
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     const formValid = this._formElement.checkValidity();
@@ -55,7 +55,7 @@ export class FormValidator {
     }
   };
 
-    /*Найдем все формы*/
+  //Найдем все формы
   _setEventListeners() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
       inputList.forEach((inputElement) => {
@@ -66,7 +66,7 @@ export class FormValidator {
       });
   };
 
-  /*Запуск валидации*/
+  //Запуск валидации*/
   enableValidation() {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();

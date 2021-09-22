@@ -1,9 +1,9 @@
-import {showPopup} from './index.js';
 export class Card {
-  constructor(elements, cardSelector) {
+  constructor(elements, cardSelector, handleCardClick) {
     this._name = elements.name;
     this._link = elements.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -16,6 +16,7 @@ export class Card {
     return cardElem;
 }
 
+//Генерация карточки
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
@@ -26,24 +27,18 @@ export class Card {
     return this._element;
   }
 
+//Удаление карточки
 _removeElem() {
   this._element.remove();
 }
 
+//Лайк
 _toggleLike() {
   this._element.querySelector('.element__button-like').classList.toggle('element__button-like_active');
 }
 
-_openGallery(evt) {
-  const galleryPopup = document.getElementById("popup_opengalery");
-  const galleryImg = document.querySelector(".popup__image");
-  galleryImg.src = this._link
-  galleryImg.alt = this._name
-  galleryPopup.querySelector('.popup__subtitle').textContent = this._name
-  showPopup (galleryPopup);
-}
-
-  _setEventListeners() {
+//Навешиваем слушатели
+_setEventListeners() {
 
   this._element.querySelector('.element__button-delete').addEventListener('click', () => {
     this._removeElem();
@@ -54,7 +49,7 @@ _openGallery(evt) {
       });
 
   this._element.querySelector('.element__image').addEventListener('click', () => {
-    this._openGallery();
+    this._handleCardClick(this._link, this._name);
       });
   }
 }

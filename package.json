@@ -1,0 +1,23 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "### Обзор Проект Место является интерактивной страницей, куда можно добавлять фотографии, удалять их и ставить лайки. на текущий момент реализована только часть функционала, а именно редактирование профиля.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stanislavgolik/mesto.git"
+  },
+  "author": "Golik Stanislav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stanislavgolik/mesto/issues"
+  },
+  "homepage": "https://github.com/stanislavgolik/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0"
+  }
+}
