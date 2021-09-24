@@ -5,13 +5,13 @@ export class Popup {
   };
 
   //Открытие попапа
-  showPopup() {
+  open() {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscPopup);
   }
 
   //Закрытие попапа
-  closePopup() {
+  close() {
     this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscPopup);
   }
@@ -19,7 +19,7 @@ export class Popup {
   //Закрытие попапа по кнопке ESC
   _handleEscPopup(event) {
     if(event.key === 'Escape') {
-      this.closePopup();
+      this.close();
     }
   }
 
@@ -27,7 +27,7 @@ export class Popup {
   setEventListeners() {
     this._popup.addEventListener('click', (evt) => {
       if (evt.target === this._popup || evt.target.classList.contains('popup__button-close')) {
-    this.closePopup();
+    this.close();
   }
     });
   }

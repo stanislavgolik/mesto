@@ -27,8 +27,8 @@ export class PopupWithForm extends Popup {
   }
 
   //Закрываем попап, очищаем поля
-  closePopup() {
-    super.closePopup();
+  close() {
+    super.close();
     this._popupForm.reset();
   }
 }

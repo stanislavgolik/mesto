@@ -27,12 +27,12 @@ popupShowImageCards.setEventListeners();
 
 //Открытие попапа просмотра карточек
 function handleCardClick (link, title) {
-  popupShowImageCards.showPopup(link, title);
+  popupShowImageCards.open(link, title);
 };
 
 
 //Обработчик закрытия попапа просмотра картинок и добавление информации
-closeButtonGallery.addEventListener('click', () => popupShowImageCards.closePopup('.popup_opengalery'));
+closeButtonGallery.addEventListener('click', () => popupShowImageCards.close('.popup_opengalery'));
 
 //Данные профиля на странице
 const infoProfile = new UserInfo({ nameSelector: '.profile__title', infoSelector: '.profile__subtitle'});
@@ -50,7 +50,7 @@ function openedProfileInfo () {
   const userProfile = infoProfile.getUserInfo();
   inputName.value = userProfile.name;
   inputJob.value = userProfile.info;
-  popupWithProfile.showPopup();
+  popupWithProfile.open();
   formValidatorEdit.toggleButtonState();
   formValidatorEdit.hideInputSelectorError();
 };
@@ -58,7 +58,7 @@ function openedProfileInfo () {
 //Функция изменения информации в профиле
 function editProfile () {
   infoProfile.setUserInfo({name: inputName.value, info: inputJob.value });
-  popupWithProfile.closePopup()
+  popupWithProfile.close()
 };
 
 //Попап добавлениие карточек
@@ -67,7 +67,7 @@ popupCardsAdd.setEventListeners();
 
 //Функция открытие попапа добавления карточек
 function openPopupAddCards () {
-  popupCardsAdd.showPopup();
+  popupCardsAdd.open();
   formValidatorCard.toggleButtonState();
   formValidatorCard.hideInputSelectorError();
 };
@@ -85,7 +85,7 @@ function submitAddCardForm() {
   name: formItemTitle}
 
   elements.prepend(createCards(element));
-  popupCardsAdd.closePopup()
+  popupCardsAdd.close()
 };
 
 //Функция создания карточек
